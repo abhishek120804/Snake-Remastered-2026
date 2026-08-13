@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Remastered</title>
+<meta name="description" content="Snake Remastered — a modern, cinematic love letter to the classic keypad game.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Animated background -->
+<div class="background">
+  <div class="aurora aurora1"></div>
+  <div class="aurora aurora2"></div>
+  <canvas id="stars" class="stars"></canvas>
+  <div class="noise"></div>
+</div>
+
+<!-- Cinematic intro -->
+<div id="intro">
+  <h1>SNAKE<span>REMASTERED</span></h1>
+  <p>A modern love letter to the classic</p>
+  <button id="introEnter" class="ghost-btn">TAP TO BEGIN</button>
+</div>
+
+<div class="stage">
+
+  <!-- Phone -->
+  <div class="phone">
+    <div class="reflection"></div>
+    <div class="camera"></div>
+    <div class="speaker"></div>
+    <div class="brand">AG STUDIO</div>
+
+    <div class="screen">
+      <div class="scanlines"></div>
+      <div class="screen-glow"></div>
+
+      <div class="screen-ui">
+        <div class="stat">
+          <span class="stat-label">SCORE</span>
+          <span id="score" class="stat-value">000</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">BEST</span>
+          <span id="best" class="stat-value">000</span>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="game" width="420" height="420"></canvas>
+
+        <!-- Ready overlay, lives inside the phone screen -->
+        <div id="ready" class="in-screen-panel">
+          <p class="panel-title">READY?</p>
+          <p class="panel-sub">arrows / WASD / swipe · space to pause</p>
+          <button id="readyStart" class="pixel-btn">PRESS START</button>
+        </div>
+
+        <!-- Game Over, lives inside the phone screen -->
+        <div id="gameOver" class="in-screen-panel hidden">
+          <p class="panel-title">GAME OVER</p>
+          <p class="panel-sub">Score <span id="finalScore">0</span></p>
+          <div id="leaderboardView" class="leaderboard-view hidden">
+            <ol id="leaderboardList"></ol>
+          </div>
+          <div class="panel-actions">
+            <button id="playAgainBtn" class="pixel-btn">PLAY AGAIN</button>
+            <button id="leaderboardBtn" class="pixel-btn ghost">LEADERBOARD</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="up" aria-label="Up">▲</button>
+      <div class="controls-row">
+        <button id="left" aria-label="Left">◀</button>
+        <button id="center" aria-label="Pause">●</button>
+        <button id="right" aria-label="Right">▶</button>
+      </div>
+      <button id="down" aria-label="Down">▼</button>
+    </div>
+  </div>
+
+</div>
+
+<button id="muteBtn" class="mute-btn" aria-label="Toggle sound">🔊</button>
+
+<script src="js/particles.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/food.js"></script>
+<script src="js/snake.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
