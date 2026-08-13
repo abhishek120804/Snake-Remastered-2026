@@ -118,24 +118,40 @@
       game.togglePause();
     });
 
-    /* ---------- swipe controls ---------- */
-    let touchStart = null;
-    gameCanvas.addEventListener('touchstart', (e) => {
-      const t = e.touches[0];
-      touchStart = { x: t.clientX, y: t.clientY };
-    }, { passive: true });
+/* ---------- swipe controls ---------- */
+let touchStart = null;
 
-    gameCanvas.addEventListener('touchend', (e) => {
-      if (!touchStart) return;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - touchStart.x;
-      const dy = t.clientY - touchStart.y;
-      if (Math.hypot(dx, dy) < 18) { touchStart = null; return; } // ignore taps
-      const dir = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
-      unlockAudio();
-      game.handleDirection(dir);
-      touchStart = null;
-    }, { passive: true });
+gameCanvas.addEventListener('touchstart', (e) => {
+  if (e.touches.length !== 1) return;
+
+  const t = e.touches[0];
+  touchStart = {
+    x: t.clientX,
+    y: t.clientY
+  };
+}, { passive: true });
+
+gameCanvas.addEventListener('touchend', (e) => {
+  if (!touchStart) return;
+
+  const t = e.changedTouches[0];
+
+  const dx = t.clientX - touchStart.x;
+  const dy = t.clientY - touchStart.y;
+
+  touchStart = null;
+
+  // Ignore very small movements
+  if (Math.hypot(dx, dy) < 18) return;
+
+  const dir =
+    Math.abs(dx) > Math.abs(dy)
+      ? (dx > 0 ? 'right' : 'left')
+      : (dy > 0 ? 'down' : 'up');
+
+  unlockAudio();
+  game.handleDirection(dir);
+}, { passive: true });
 
     /* ---------- mute button ---------- */
     UI.setMuteIcon(Audio.muted);

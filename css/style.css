@@ -284,6 +284,10 @@ canvas#game{
   width:100%;
   height:auto;
   aspect-ratio:1/1;
+  touch-action:none;
+  -webkit-user-select:none;
+  user-select:none;
+  -webkit-touch-callout:none;
   background:var(--lcd-dark);
   border:4px solid #5d7252;
   border-radius:12px;
